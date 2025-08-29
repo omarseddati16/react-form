@@ -1,18 +1,41 @@
 import React from 'react'
 import articles from '../data/articles'
+import { useState } from 'react'
 
 const Main = () => {
+  const [articlesProduct, setArticlesProduct] = useState(articles)
+  const [search, setSearch] = useState('')
+
+  const handleForm = (event) => {
+    event.preventDefault();
+    const sanitize = search.trim()
+    const copyArticles = [...articlesProduct, sanitize]
+    setArticlesProduct(copyArticles)
+  }
   return (
-    <div>
-      <ul>
-        {articles.map((newArticle, index) => (
-          <li className='list-unstyled pt-2' key={index}>
-            <h2>{newArticle.title}</h2>
-            <p>{newArticle.description}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <form onSubmit={handleForm}>
+        <input
+          type="text"
+          value={search}
+          onChange={(event) => {
+            setSearch(event.target.value)
+          }}
+        />
+        <button className='btn mt-2 btn-primary d-flex'></button>
+      </form>
+
+      <div>
+        <ul>
+          {articles.map((newArticle, index) => (
+            <li className='list-unstyled pt-2' key={index}>
+              <h5>{newArticle.title}</h5>
+              <p>{newArticle.description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   )
 }
 
