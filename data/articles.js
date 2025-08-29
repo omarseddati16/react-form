@@ -18,7 +18,7 @@ const articles = [
     id: 4,
     title: "Monitor LG 27'' 4K",
     description: "Schermo IPS con risoluzione UHD e HDR"
-  }
+  },
 ];
 
 export default articles

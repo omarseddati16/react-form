@@ -8,8 +8,12 @@ const Main = () => {
 
   const handleForm = (event) => {
     event.preventDefault();
-    const sanitize = search.trim()
-    const copyArticles = [...articlesProduct, sanitize]
+    const sanitize = search.trim();
+    const newProduct = {
+      title: sanitize
+    }
+
+    const copyArticles = [...articlesProduct, newProduct]
     setArticlesProduct(copyArticles)
   }
   return (
@@ -22,12 +26,12 @@ const Main = () => {
             setSearch(event.target.value)
           }}
         />
-        <button className='btn mt-2 btn-primary d-flex'></button>
+        <button className='btn mt-2 btn-primary d-flex'>albero</button>
       </form>
 
       <div>
         <ul>
-          {articles.map((newArticle, index) => (
+          {articlesProduct.map((newArticle, index) => (
             <li className='list-unstyled pt-2' key={index}>
               <h5>{newArticle.title}</h5>
               <p>{newArticle.description}</p>
