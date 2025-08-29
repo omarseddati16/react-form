@@ -6,6 +6,7 @@ const Main = () => {
   const [articlesProduct, setArticlesProduct] = useState(articles)
   const [search, setSearch] = useState('')
 
+
   const handleForm = (event) => {
     event.preventDefault();
     const sanitize = search.trim();
@@ -16,6 +17,8 @@ const Main = () => {
     const copyArticles = [...articlesProduct, newProduct]
     setArticlesProduct(copyArticles)
   }
+
+
   return (
     <>
       <form onSubmit={handleForm}>
@@ -35,6 +38,14 @@ const Main = () => {
             <li className='list-unstyled pt-2' key={index}>
               <h5>{newArticle.title}</h5>
               <p>{newArticle.description}</p>
+              <button className='btn mt-2 btn-danger '
+                onClick={() => {
+                  setArticlesProduct(
+                    articlesProduct.filter((item, i) => i !== index)
+                  )
+                }}
+              >
+                delete</button>
             </li>
           ))}
         </ul>
